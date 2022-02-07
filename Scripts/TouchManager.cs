@@ -8,6 +8,7 @@ public class TouchManager : MonoBehaviour
     public static TouchManager Instance { get; set; }
 
     public bool IsTouching { get; set; }
+    public bool GameStarted { get; set; }
 
     //private Dictionary<int, Vector2> activeTouches = new Dictionary<int, Vector2>();
 
@@ -28,6 +29,9 @@ public class TouchManager : MonoBehaviour
 
     private void Update()
     {
+        if (!GameStarted)
+            return;
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -83,7 +87,7 @@ public class TouchManager : MonoBehaviour
 
     public void StopTouching()
     {
-        Instance.IsTouching = false;
+        IsTouching = false;
     }
 
     public Vector3 GetTouch()

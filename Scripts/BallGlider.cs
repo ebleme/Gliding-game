@@ -16,9 +16,6 @@ public class BallGlider : MonoBehaviour
     [SerializeField]
     private float ballOrbitalRotationTime = 0.1f;
 
-    //public event Action OnGlidingStart;
-    //public event Action OnGlidingEnd;
-
     private Animator ballAnimator;
 
     Rigidbody rb;
@@ -38,10 +35,7 @@ public class BallGlider : MonoBehaviour
 
     void Start()
     {
-        //TouchManager.Instance.OnTouchStarted += Instance_OnTouchStarted;
-        //TouchManager.Instance.OnTouchEnded += Instance_OnTouchEnded;
-
-        ball.OnBallShooted += (Ball_OnBallShooted);
+        ball.OnBallShooted += Ball_OnBallShooted;
     }
 
     private void Ball_OnBallShooted()
@@ -91,6 +85,9 @@ public class BallGlider : MonoBehaviour
 
     public void SetIsGliding(bool gliding)
     {
+        if (!isGliding)
+            return;
+
         if (gliding)
             OnTouchStarted();
         else
@@ -128,9 +125,6 @@ public class BallGlider : MonoBehaviour
 
         gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, target, glidingRotSpeed * Time.fixedDeltaTime);
 
-        //Quaternion targetRot = transform.rotation;
-        //targetRot.z += -TouchManager.Instance.TouchPos.x / 450;
-        //targetRot.z = Mathf.Clamp(targetRot.z, -30f, 30f);
         float x = 90;
         float y = 0;
         float z = -45 * TouchManager.Instance.TouchPos.x;

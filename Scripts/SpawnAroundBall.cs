@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Top ilerledikçe topun etrafýnda objeler oluþturma denemesi
 public class SpawnAroundBall : MonoBehaviour
 {
     public GameObject jumperPrefab;

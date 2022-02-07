@@ -12,7 +12,8 @@ public class ObjectPooler : MonoBehaviour
 
     [Space(20)]
     [SerializeField] private GameObject planePrefab;
-    [SerializeField] float nearVector = 200f;
+    [SerializeField] private float nearVector = 200f;
+    [SerializeField] private float cameraBehindVector = 30f;
 
     public int size;
     Queue<GameObject> pool;
@@ -37,13 +38,15 @@ public class ObjectPooler : MonoBehaviour
 
         GeneratePlane();
 
-
         pool = new Queue<GameObject>();
         size = Random.Range(minSize, maxSize);
 
+        GameObject prefab;
         for (int i = 0; i < size + 1000; i++)
         {
-            GameObject obj = Instantiate(prefabs[Random.Range(0, prefabs.Count)]);
+            prefab = prefabs[Random.Range(0, prefabs.Count)];
+
+            GameObject obj = Instantiate(prefab, transform.parent);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
@@ -75,12 +78,8 @@ public class ObjectPooler : MonoBehaviour
     public void HideObjectsBehindTheCamera()
     {
         foreach (var item in pool)
-        {
-            if (item.transform.position.z + 20 < ball.gameObject.transform.position.z)
-            {
+            if (item.transform.position.z + cameraBehindVector < ball.gameObject.transform.position.z)
                 item.SetActive(false);
-            }
-        }
     }
 
     //void Update()
@@ -91,6 +90,11 @@ public class ObjectPooler : MonoBehaviour
     float time = 1f;
     float timeCount;
     private void FixedUpdate()
+    {
+        ManageObjesctByBallMovement();
+    }
+
+    private void ManageObjesctByBallMovement()
     {
         timeCount += Time.fixedDeltaTime;
         if (timeCount > time)

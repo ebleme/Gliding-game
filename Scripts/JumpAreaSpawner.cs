@@ -45,7 +45,7 @@ public class JumpAreaSpawner : MonoBehaviour
     //List<GameObject> spawnedObjects;
 
     bool pointsGenerated;
-    Vector3[] positionArray;
+    List<Vector3> positionArray;
 
 
     public IEnumerator RandomGenerate()
@@ -62,9 +62,9 @@ public class JumpAreaSpawner : MonoBehaviour
         int i;
         //int objectCount = Random.Range(objectCountMinValue, objectCountMaxValue);
 
-        positionArray = new Vector3[ObjectPooler.Instance.size];
+        positionArray = new List<Vector3>();
 
-        for (i = 0; i < positionArray.Length; i++)
+        for (i = 0; i < ObjectPooler.Instance.size; i++)
         {
             for (int j = 0; j < maxTriesTodetermineAPosition; j++)
             {
@@ -77,7 +77,7 @@ public class JumpAreaSpawner : MonoBehaviour
                 distanceBetweenPoint = Mathf.Infinity;
 
                 for (int k = 0; k < i; k++)
-                    distanceBetweenPoint = Mathf.Min((newRandomPosition - (positionArray[k])).magnitude, distanceBetweenPoint);
+                    distanceBetweenPoint = Mathf.Min((newRandomPosition - positionArray[k]).magnitude, distanceBetweenPoint);
 
                 if (distanceBetweenPoint > minDistance + objectMaxScale) // Far enough apart
                     break;
@@ -85,11 +85,12 @@ public class JumpAreaSpawner : MonoBehaviour
 
             if (distanceBetweenPoint < minDistance + objectMaxScale)
             {
-                //Debug.Log("Generation failed -- only found " + i + " points");
+                // bulunamazsa arkaya at
+                //positionArray[i] = new Vector3(0, 0, -50);
                 break;
             }
 
-            positionArray[i] = newRandomPosition;
+            positionArray.Add(newRandomPosition);
         }
 
         pointsGenerated = true;
@@ -100,7 +101,7 @@ public class JumpAreaSpawner : MonoBehaviour
 
     private void RepositionObjects()
     {
-        for (int i = 0; i < positionArray.Length; i++)
+        for (int i = 0; i < positionArray.Count; i++)
         {
             float scale = Random.Range(objectMinScale, objectMaxScale);
             float yValue = Random.Range(objectMinYValue, objectMaxYValue);
