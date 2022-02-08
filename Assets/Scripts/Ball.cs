@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] Vector3 x1JumpForce;
     [SerializeField] Vector3 x2JumpForce;
-
+    [SerializeField] EndPanel endPanel;
     Rigidbody rb;
     bool shooted;
 
@@ -21,13 +21,20 @@ public class Ball : MonoBehaviour
 
     public event Action OnBallShooted;
 
-    SpawnAroundBall spawnAround;
+    //SpawnAroundBall spawnAround;
+
+    Vector3 startPosition;
 
     private void Awake()
     {
-        spawnAround = GetComponent<SpawnAroundBall>();
+        //spawnAround = GetComponent<SpawnAroundBall>();
         rb = GetComponent<Rigidbody>();
         ballGlider = GetComponent<BallGlider>();
+    }
+
+    private void Start()
+    {
+        startPosition = transform.position;
     }
 
     //private void Start()
@@ -94,6 +101,12 @@ public class Ball : MonoBehaviour
             rb.AddForce(x2JumpForce);
 
             ballGlider.SetIsGliding(false);
+        } 
+        else if (collision.gameObject.CompareTag(Constants.Plane))
+        {
+            float distance = Vector3.Distance(transform.position, startPosition);
+            //FindObjectOfType<EndPanel>().FinishGame(distance);
+            endPanel.FinishGame(distance);
         }
     }
 }
