@@ -172,7 +172,8 @@ public class Launcher : MonoBehaviour
         forceVector.z *= -1;
         forceVector.y *= forceMultiplierY;
 
-        ball.gameObject.GetComponent<Ball>().Launch(forceVector);
+        //ball.gameObject.GetComponent<Ball>().Launch(forceVector);
+        FindObjectOfType<BallStateManager>().Launch(forceVector);
 
         gameObject.SetActive(false);
     }

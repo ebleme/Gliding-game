@@ -782,7 +782,7 @@ MonoBehaviour:
   stickEndPositioningTime: 10
   ball: {fileID: 2040328184}
   dragMultiplier: 2
-  forceMultiplier: 5
+  forceMultiplier: 4
   forceMultiplierY: 15
   dragPower: 0
   forceVector: {x: 0, y: 0, z: 0}
@@ -7334,13 +7334,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040328183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 729ac78b4364c394fbd4da618c396e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x1JumpForce: {x: 0, y: 1600, z: 600}
-  x2JumpForce: {x: 0, y: 1600, z: 1200}
+  x1JumpForce: {x: 0, y: 800, z: 300}
+  x2JumpForce: {x: 0, y: 800, z: 600}
   endPanel: {fileID: 1648015733}
 --- !u!54 &2040328187
 Rigidbody:
@@ -7358,7 +7358,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
---- !u!114 &2040328189
+--- !u!114 &2040328188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7367,12 +7367,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 2040328183}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b8b66e125ba2f42bcdd0bd59d2ca2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glidingDecreaseSpeed: 6
+  glidingRotSpeed: 500
+  ballOrbitalRotationTime: 0.1
+  x1JumpForce: {x: 0, y: 800, z: 300}
+  x2JumpForce: {x: 0, y: 800, z: 600}
+  endPanel: {fileID: 1648015733}
+  planeLowBoundarie: -498
+  planeHighBoundarie: 498
+  ballGlidingRotationVector: {x: 90, y: 0, z: -45}
+  ballGlidingVector: {x: 90, y: 0, z: 0}
+  rb: {fileID: 0}
+  ballAnimator: {fileID: 2040328190}
+  startPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &2040328189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040328183}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e626e802f03032c4dbc5b60ccf3de4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   glidingSpeed: 10
   glidingRotSpeed: 500
   ballOrbitalRotationTime: 0.1
+--- !u!95 &2040328190 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
+  m_PrefabInstance: {fileID: 725018735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2074777345
 GameObject:
   m_ObjectHideFlags: 0

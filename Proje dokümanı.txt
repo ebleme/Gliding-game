@@ -1,21 +1,27 @@
 Gliding Game Todos:
 
-1. Procedural scene hazırla
+1. Procedural jumoer object spawner
 2. Modelleri ve Animasyonları projeye dahil et.
 3. Fırlatma animasyonunu ve procedürünü hazırla
 4. Eğik atış hareketi yaptır
 5. Dokununca gliding aşamasına geç
 6. Boşluğa gelince gameover panelinde mesafeyi göster. Tamama basınca başa gelsin
 7. Küp veya slindire dokununca zıplamayı yaptır
+8. UI
 
 Performan iyileştirmeleri 
 - Batching kullan
+- Object Pooling
+- Arkada kalan jumper lar pasif edilir
 - Camera takibi Late update
 - Top süzülüşü FixedUpdate
+- Top rotasyonu DOTween
+- Adaptive Performance
 
 
 Notlar:
-- İlk fırlatma slingShot dan olur
+- Touch Manager
+- İlk fırlatma Launcher dan olur
 - Her zıplama rampası topa ivme verir ve yukarı fırlatır
-- Top zıplamayla ilgili hiç bir fonksiyon içermez
 - Top havayken dokunulunca kanatlarını açıp süzülme hareketi yapar
+
